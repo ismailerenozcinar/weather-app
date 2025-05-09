@@ -5,10 +5,9 @@ from weather_service import get_weather_for_city
 
 app = FastAPI()
 
-# Frontend erişimi için CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Geliştirme için açık
+    allow_origins=["*"],  
     allow_methods=["*"],
     allow_headers=["*"],
 )

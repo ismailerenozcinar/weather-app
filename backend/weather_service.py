@@ -1,8 +1,7 @@
 import requests
 from fastapi import HTTPException
 
-API_KEY = "ed5d894f32762efd5eed2907545aa7de"
-city_name = "Istanbul"
+API_KEY = "YOUR_API_KEY"
 
 def get_coordinates(city_name: str, country_code="TR"):
     url = "http://api.openweathermap.org/geo/1.0/direct"
@@ -18,12 +17,10 @@ def get_coordinates(city_name: str, country_code="TR"):
     if response.status_code != 200 or not data:
         raise HTTPException(status_code=404, detail=f"{city_name} için koordinat bulunamadı.")
 
-    # Ülke filtresi uygula (örnek: Türkiye için "TR", İngiltere için "GB")
     for item in data:
         if item.get("country") == country_code:
             return item["lat"], item["lon"]
 
-    # Uygun ülke bulunamazsa, ilk sonucu döndür
     return data[0]["lat"], data[0]["lon"]
 
 def get_weather_for_city(city_name: str):
@@ -50,4 +47,3 @@ def get_weather_for_city(city_name: str):
         "lon": lon,
         "current": response.json()["current"]
     }
-print(get_weather_for_city(city_name))
