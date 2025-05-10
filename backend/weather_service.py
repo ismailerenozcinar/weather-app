@@ -1,7 +1,7 @@
 import requests
 from fastapi import HTTPException
 
-API_KEY = "YOUR_API_KEY"
+API_KEY = "ed5d894f32762efd5eed2907545aa7de"
 
 def get_coordinates(city_name: str, country_code="TR"):
     url = "http://api.openweathermap.org/geo/1.0/direct"
